@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# Superseded runs (new commit pushed to the same branch/PR) are pure waste;
+# cancelling them early keeps the queue free. CI publishes nothing, so
+# cancellation is always safe here.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile-samples:
+    name: Compile samples (nvcc, no GPU required)
+    runs-on: ubuntu-latest
+    # None of these runners have a GPU. Compiling with nvcc does not need one -
+    # only *running* the binaries does. This job proves every sample builds;
+    # it cannot prove the kernels run correctly. See README.md's "GPU access"
+    # note for why the samples in this repo are compile-checked, not run, in CI.
+    container: nvidia/cuda:12.6.2-devel-ubuntu22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: nvcc version
+        run: nvcc --version
+
+      - name: Compile every sample
+        run: |
+          set -e
+          for dir in code/*/; do
+            if [ -f "$dir/Makefile" ]; then
+              echo "== $dir =="
+              make -C "$dir" clean
+              make -C "$dir"
+            fi
+          done

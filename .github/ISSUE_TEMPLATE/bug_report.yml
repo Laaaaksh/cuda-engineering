@@ -1,0 +1,40 @@
+name: Bug report
+description: Something in a sample or the curriculum is wrong
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem.
+  - type: input
+    id: location
+    attributes:
+      label: Where
+      description: File or curriculum stage this is about, e.g. `code/04-matmul-tiled/matmul_tiled.cu` or `curriculum/05-reductions.md`.
+      placeholder: "code/04-matmul-tiled/matmul_tiled.cu"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What's wrong?
+      description: A compile error, a wrong claim, a dead link, incorrect kernel behavior, etc. Include the exact error text if there is one.
+      placeholder: |
+        1. Ran `make` in code/04-matmul-tiled
+        2. Got this error: ...
+    validations:
+      required: true
+  - type: input
+    id: cuda-version
+    attributes:
+      label: CUDA toolkit version
+      description: Output of `nvcc --version`. Only needed for compile/runtime bugs, not doc issues.
+    validations:
+      required: false
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU / driver
+      description: Output of `nvidia-smi`, if relevant.
+    validations:
+      required: false

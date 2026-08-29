@@ -1,0 +1,12 @@
+# Build output from the CUDA samples (see code/*/Makefile)
+code/**/*.o
+code/**/*.out
+code/**/*.nsys-rep
+code/**/*.ncu-rep
+code/**/*.sqlite
+
+# Editor / OS cruft
+.DS_Store
+*.swp
+.vscode/
+.idea/

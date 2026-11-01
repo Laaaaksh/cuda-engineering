@@ -5,7 +5,7 @@
 **A sequenced path from "I can program" to "I can reason about occupancy,
 memory coalescing, and profiler output" — with runnable code at every step.**
 
-[![CI](https://github.com/attentionfs/cuda-engineering/actions/workflows/ci.yml/badge.svg)](https://github.com/attentionfs/cuda-engineering/actions/workflows/ci.yml)
+[![CI](https://github.com/Laaaaksh/cuda-engineering/actions/workflows/ci.yml/badge.svg)](https://github.com/Laaaaksh/cuda-engineering/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
 [![CUDA](https://img.shields.io/badge/CUDA-12.6-76B900?logo=nvidia&logoColor=white)](code/README.md)
 
